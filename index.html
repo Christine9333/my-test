@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ECharts Demo</title>
+  <!-- 使用CDN加载ECharts -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+</head>
+<body>
+  <!-- 图表容器 -->
+  <div id="main" style="width: 800px; height: 600px;"></div>
+  <script>
+    // 等待DOM加载完成
+    document.addEventListener('DOMContentLoaded', function() {
+      const chartDom = document.getElementById('main');
+      if (!chartDom) {
+        console.error('找不到图表容器元素');
+        return;
+      }
+      
+      // 初始化图表
+      const myChart = echarts.init(chartDom);
+      
+      // 检查初始化是否成功
+      if (!myChart) {
+        console.error('ECharts初始化失败');
+        return;
+      }
+      
+      // 图表配置
+      const option = {
+        title: {
+          text: 'GitHub Pages ECharts示例'
+        },
+        tooltip: {},
+        xAxis: {
+          data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
+        },
+        yAxis: {},
+        series: [{
+          name: '销量',
+          type: 'bar',
+          data: [5, 20, 36, 10, 10, 20]
+        }]
+      };
+      
+      // 设置图表选项
+      myChart.setOption(option);
+      
+      // 监听窗口大小变化，调整图表
+      window.addEventListener('resize', function() {
+        myChart.resize();
+      });
+    });
+  </script>
+</body>
+</html>
